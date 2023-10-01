@@ -8,4 +8,4 @@ class Lesson(models.Model):
     link = models.URLField(max_length=200)
     duration = models.PositiveIntegerField()
 
-
+class
