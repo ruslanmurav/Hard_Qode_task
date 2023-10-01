@@ -10,4 +10,3 @@ class Viewing(models.Model):
     duration = models.PositiveIntegerField()
     viewed = models.BooleanField()
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    
