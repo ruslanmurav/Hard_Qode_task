@@ -9,3 +9,8 @@ class Product(models.Model):
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE, null=False)
 
 
+class Access(models.Model):
+    product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+
+

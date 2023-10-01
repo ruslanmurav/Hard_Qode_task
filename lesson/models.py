@@ -11,6 +11,6 @@ class Lesson(models.Model):
 
 
 class ProductLesson(models.Model):
-    product = models.ForeignKey(to=Product)
-    Lesson = models.ForeignKey(to=Lesson)
+    product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
+    Lesson = models.ForeignKey(to=Lesson,  on_delete=models.CASCADE)
 
