@@ -3,7 +3,8 @@ from rest_framework.viewsets import ModelViewSet
 
 from lesson.models import Lesson, ProductLesson
 from product.models import Product, Access
-from product.serializers import ProductSerializer, AccessSerializer, UserLessonSerializer, UserProductSerializer
+from product.serializers import ProductSerializer, AccessSerializer, UserLessonSerializer, UserProductSerializer, \
+    StatisticsSerializer
 
 
 class ProductViewSet(ModelViewSet):
@@ -41,4 +42,11 @@ class UserProductViewSet(ModelViewSet):
                 lessons = Lesson.objects.filter(productlesson__product_id=product_id)
                 return lessons
         return Lesson.objects.none()
+
+
+class StatisticViewSet(ModelViewSet):
+    serializer_class = StatisticsSerializer
+    queryset = Product.objects.all()
+
+
 
