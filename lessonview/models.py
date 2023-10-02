@@ -10,6 +10,7 @@ class Viewing(models.Model):
     duration = models.PositiveIntegerField()
     viewed = models.BooleanField(default=False)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    last_watching = models.DateTimeField(auto_now_add=True)
 
     def save(
             self, force_insert=False, force_update=False, using=None, update_fields=None

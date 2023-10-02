@@ -24,10 +24,10 @@ from product.views import ProductViewSet, UserLessonViewSet
 router = DefaultRouter()
 router.register('Products', ProductViewSet)
 router.register('Lesson', LessonViewSet)
-router.register('UserLesson', UserLessonViewSet, basename='user-lessons')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('user-lessons/<int:user_id>/', UserLessonViewSet.as_view({'get': 'list'}), name='user-lessons')
+    path('user-lessons/<int:user_id>/', UserLessonViewSet.as_view({'get': 'list'}), name='user-lessons'),
+    path('user-product/<int:user_id>&<int:product_id>/', UserLessonViewSet.as_view({'get': 'list'}), name='user-product'),
 ] + router.urls
 
