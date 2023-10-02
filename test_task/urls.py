@@ -21,14 +21,12 @@ from rest_framework.routers import DefaultRouter
 from lesson.views import LessonViewSet
 from product.views import ProductViewSet, UserLessonViewSet, UserProductViewSet, StatisticViewSet
 
-router = DefaultRouter()
-router.register('Products', ProductViewSet)
-router.register('Lesson', LessonViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user-lessons/<int:user_id>/', UserLessonViewSet.as_view({'get': 'list'}), name='user-lessons'),
     path('user-product/<int:user_id>&<int:product_id>/', UserProductViewSet.as_view({'get': 'list'}), name='user-product'),
     path('product-stats/<int:product_id>', StatisticViewSet.as_view({'get': 'list'}), name='product-stats'),
-] + router.urls
+]
 
