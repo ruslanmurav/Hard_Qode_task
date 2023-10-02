@@ -1,21 +1,10 @@
+from django.contrib.auth.models import User
 from django.db.models import Sum
 from rest_framework import serializers
 
 from lesson.models import Lesson
 from lessonview.models import Viewing
 from product.models import Product, Access
-
-
-class ProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = ['id', 'name', 'owner']
-
-
-class AccessSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Access
-        fields = '__all__'
 
 
 class UserLessonSerializer(serializers.ModelSerializer):
@@ -77,11 +66,25 @@ class UserProductSerializer(serializers.ModelSerializer):
 class StatisticsSerializer(serializers.ModelSerializer):
     count_watched = serializers.SerializerMethodField()
     total_viewing = serializers.SerializerMethodField()
+    count_pupil = serializers.SerializerMethodField()
+    sales_percentage = serializers.SerializerMethodField()
 
     def get_count_watched(self, obj):
         viewings = Viewing.objects.filter(lesson__productlesson__product=obj)
         total_views = viewings.count()
         return total_views
+
+    def get_count_pupil(self, obj):
+        access = Access.objects.filter(product=obj)
+        return access.count()
+
+    def get_sales_percentage(self, obj):
+        access = Access.objects.filter(product=obj)
+        users = User.objects.all()
+
+        sales_percentage = f'{access.count() / users.count() * 100}%'
+
+        return sales_percentage
 
     def get_total_viewing(self, obj):
         viewings = Viewing.objects.filter(lesson__productlesson__product=obj)
@@ -93,7 +96,7 @@ class StatisticsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'owner', 'count_watched', 'total_viewing']
+        fields = ['id', 'name', 'owner', 'count_watched', 'total_viewing', 'count_pupil', 'sales_percentage']
 
 
 
