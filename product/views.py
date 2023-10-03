@@ -7,9 +7,6 @@ from product.serializers import UserLessonSerializer, UserProductSerializer, \
     StatisticsSerializer
 
 
-
-
-
 class UserLessonViewSet(ModelViewSet):
     serializer_class = UserLessonSerializer
 
