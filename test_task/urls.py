@@ -18,10 +18,8 @@ from django.contrib import admin
 from django.urls import path, re_path
 from rest_framework.routers import DefaultRouter
 
-from lesson.views import LessonViewSet
-from product.views import ProductViewSet, UserLessonViewSet, UserProductViewSet, StatisticViewSet
 
-
+from product.views import UserLessonViewSet, UserProductViewSet, StatisticViewSet
 
 urlpatterns = [
     path('admin/', admin.site.urls),

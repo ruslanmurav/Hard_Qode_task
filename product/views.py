@@ -3,18 +3,11 @@ from rest_framework.viewsets import ModelViewSet
 
 from lesson.models import Lesson, ProductLesson
 from product.models import Product, Access
-from product.serializers import ProductSerializer, AccessSerializer, UserLessonSerializer, UserProductSerializer, \
+from product.serializers import UserLessonSerializer, UserProductSerializer, \
     StatisticsSerializer
 
 
-class ProductViewSet(ModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
 
-
-class AccessViewSet(ModelViewSet):
-    queryset = Access.objects.all()
-    serializer_class = AccessSerializer
 
 
 class UserLessonViewSet(ModelViewSet):
